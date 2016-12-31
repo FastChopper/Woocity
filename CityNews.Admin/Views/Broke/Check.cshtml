@@ -1,0 +1,86 @@
+﻿@model CityNews.Admin.Models.BrokeFormModel
+@{
+    ViewBag.Title = "爆料管理 - 审核";
+}
+<h2 class="text-primary">爆料管理 - 审核</h2>
+@using (Ajax.BeginForm(new AjaxOptions { OnSuccess = "callback" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.Title)：</label>
+        @Html.TextBoxFor(i => i.Title, new { @class = "form-control", rows = 5 })
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.Title)</div>
+    </div>
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.Contents)：</label>
+        @Html.TextAreaFor(i => i.Contents, new { @class = "form-control", rows = 5 })
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.Contents)</div>
+    </div>
+   
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.Explain)：</label>
+        @Html.TextAreaFor(i => i.Explain, new { @class = "form-control", rows = 5 })
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.Explain)</div>
+    </div>
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.Status)：</label>
+        @Html.DropDownListFor(i => i.Status, (SelectList)ViewBag.brokeStatus, new { @class = "form-control" })
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.Status)</div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>文件名称</th>
+                <th>上传时间</th>
+                <th>预览</th>
+                <th>管理</th>
+                <th>文件下载</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.FilePath)
+            {
+                <tr>
+                    <td>
+                        @item.FileRealName
+                    </td>
+                    <td>
+                        @item.AddTime.ToString("yyyy-MM-dd")
+                    </td>
+                    <td>
+                        <img src="@item.FilePath" height="100" />
+                    </td>
+                    <td>
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <a href="@Url.Action("Pic", new {id = item.ID})" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> 查看/修改</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="@item.FilePath" target="_blank"><span class="glyphicon glyphicon-download"></span>右键点击另存为</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">修改</button>
+        <a href="javascript:history.back()" class="btn btn-danger">取消</a>
+    </div>
+}
+
+@section scripts{
+
+    <script>
+        function callback(data) {
+            alert(data.Msg);
+            if (data.Code == 0) {
+                window.location = '@Url.Action("Index")';
+            }
+        }
+    </script>
+
+
+}
+

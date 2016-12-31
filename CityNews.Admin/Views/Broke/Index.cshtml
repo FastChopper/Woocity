@@ -1,0 +1,148 @@
+﻿@model CityNews.Model.Common.ResultList<CityNews.Admin.Models.BrokeViewModel>
+@{
+    ViewBag.Title = "爆料管理";
+}
+
+<h2 class="text-primary">爆料管理</h2>
+<div style="width: 1300px">
+    <div style="width: 80%; padding: 0; margin: 0; float: left; box-sizing: border-box;">
+        <div class="form-inline">
+            <label for="State">状态：</label>@Html.DropDownList("state",(SelectList)ViewBag.brokeState, new { @class = "form-control", style = "width: 200px" })
+            <label for="type">分类：</label>@Html.DropDownList("type", (SelectList)ViewBag.ItemTypeList, new { @class = "form-control", style = "width: 200px" })
+        </div>
+    </div>
+    <div style="width: 20%; padding: 0; margin: 0; float: left; box-sizing: border-box;" class="btn-group" role="group">
+        <button type="button"  onclick="search()" class="btn btn-primary">查询</button>
+        <a  href="@Url.Action("Index","Home")" class="btn btn-default">返回首页</a>
+    </div>
+</div>
+@Html.AntiForgeryToken()
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th width="10%">曝料人电话</th>
+            <th width="30%">内容</th>
+            <th width="7%">分类</th>
+            <th width="7%">状态</th>
+            <th width="30%">进度反馈</th>
+            <th width="16%">管理</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Data)
+        {
+            <tr data-id="@item.ID">
+                <td>
+                    @item.Phone
+                </td>
+                <td>
+                    @item.Contents
+                </td>
+                <td>@item.StatusName</td>
+                <td>
+                    @item.StateName
+                </td>
+                <td>@item.Explain</td>
+                <td>
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group">
+                            @if (CheckUser.Check("3"))
+                            {
+                                if (item.State != 2)
+                                {
+                                    <a href="@Url.Action("IfCation", new {id = item.ID})"  class="btn btn-default">
+                                        <span class="glyphicon glyphicon-folder-open"></span> 分类
+                                    </a>
+                                }
+                                else
+                                {
+                                    <button disabled="disabled" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-folder-open"></span> 分类
+                                    </button>
+                                }
+                            }
+                            @if (!CheckUser.Check("3"))
+                            {
+                                if (item.Status == 1)
+                                {
+                                    <button type="button" class="btn btn-success" onclick="enNdis(this, @item.ID, false)"><span class="glyphicon glyphicon-ok"></span> 已发布</button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-danger" onclick="enNdis(this, @item.ID, true)"><span class="glyphicon glyphicon-remove"></span> 未发布</button>
+                                }
+                            }
+                            @if (CheckUser.Check("2"))
+                            {
+                                if (item.State != 0) {
+                                <a href="@Url.Action("Check", new {id = item.ID})" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> 审核</a>
+                                }
+                                else
+                                {
+                                    <button disabled="disabled" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> 审核</button>
+                                }
+                            }
+                            @if (CheckUser.Check("1"))
+                            {
+                                <a href="@Url.Action("Modify", new {id = item.ID})" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> 审核</a>
+                            }
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.BootstrapPager(new PagerConfig { PageSize = 20, TotalRecord = ViewBag.RecordCount })
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.dragsort.js")
+    <script>
+        $(function () {
+            var cancelMove;
+            $('tbody').dragsort({
+                idAttr: 'data-id',
+                callback: function (data) {
+                    cancelMove = data.cancel;
+                    $.post('@Url.Action("SortOrder")', {
+                        __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),
+                        src: data.sourceId,
+                        des: data.targetId
+                    }, function (data) {
+                        if (data != 0) {
+                            cancelMove();
+                        }
+                    }, 'json');
+                }
+            });
+        });
+        function search() {
+            var state = $("#state").val();
+            var type = $("#type").val();
+            window.location = '@Url.Action("Index")?state=' + state + '&type=' + type;
+        }
+        function enNdis(obj, id, enable) {
+            $.post('@Url.Action("Enable","Broke")/' + id, { enable: enable, __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() }, function (data) {
+                if (data.Code == 0) {
+                    if (enable) {
+                        $(obj).removeClass('btn-danger').addClass('btn-success');
+                        $(obj).attr('onclick', 'enNdis(this, ' + id + ', false)');
+                        $(obj).html('<span class="glyphicon glyphicon-ok"></span> 已发布');
+                    } else {
+                        $(obj).removeClass('btn-success').addClass('btn-danger');
+                        $(obj).attr('onclick', 'enNdis(this, ' + id + ', true)');
+                        $(obj).html('<span class="glyphicon glyphicon-remove"></span> 未发布');
+                    }
+                } else {
+                    alert(data.Msg);
+                }
+            }, 'json');
+        }
+    </script>
+}
+
+
+
+

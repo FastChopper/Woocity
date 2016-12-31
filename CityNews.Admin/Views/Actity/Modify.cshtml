@@ -1,0 +1,146 @@
+﻿@model CityNews.Admin.Models.ActityFormModel
+@{
+    ViewBag.Title = "活动管理 - 审核";
+}
+<h2 class="text-primary">活动管理 - 审核</h2>
+@using (Ajax.BeginForm(new AjaxOptions { OnSuccess = "callback" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.Leader)：</label>
+        @Html.TextBoxFor(i => i.Leader, new { @class = "form-control" })
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.Leader)</div>
+    </div>
+
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.Name)：</label>
+        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" })
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.Name)</div>
+    </div>
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.Contents)：</label>
+        @Html.TextAreaFor(i => i.Contents, new {@class = "form-control"})
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.Contents)</div>
+    </div>
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.Arrange)：</label>
+        @Html.TextAreaFor(i => i.Arrange, new { @class = "form-control" })
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.Arrange)</div>
+    </div>
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.SignEndTime)：</label>
+        <div class="input-group date" data-date="@Model.SignEndTime.ToString("yyyy-MM-dd")" data-date-format="yyyy-MM-dd">
+            @Html.TextBoxFor(i => i.SignEndTime, new { @class = "form-control" })
+
+            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.SignEndTime)</div>
+    </div>
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.StartTime)：</label>
+        <div class="input-group date" data-date="@Model.StartTime.ToString("yyyy-MM-dd")" data-date-format="yyyy-MM-dd">
+            @Html.TextBoxFor(i => i.StartTime, new { @class = "form-control" })
+
+            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.StartTime)</div>
+    </div>
+    <div class="form-group">
+        <label for="Title">@Html.DisplayNameFor(i => i.EndTime)：</label>
+        <div class="input-group date" data-date="@Model.EndTime.ToString("yyyy-MM-dd")" data-date-format="yyyy-MM-dd">
+            @Html.TextBoxFor(i => i.EndTime, new { @class = "form-control" })
+
+            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.EndTime)</div>
+    </div>
+
+        <div class="form-group">
+            <label for="Title">@Html.DisplayNameFor(i => i.State)：</label>
+            @Html.DropDownListFor(i => i.State, (SelectList)ViewBag.brokeState, new { @class = "form-control" })
+            <div class="text-danger">@Html.ValidationMessageFor(i => i.State)</div>
+        </div>
+
+        <div class="form-group">
+            <label for="Title">@Html.DisplayNameFor(i => i.Status)：</label>
+            @Html.DropDownListFor(i => i.Status, (SelectList)ViewBag.brokeStatus, new { @class = "form-control" })
+            <div class="text-danger">@Html.ValidationMessageFor(i => i.Status)</div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>文件名称</th>
+                    <th>上传时间</th>
+                    <th>预览</th>
+                    <th>管理</th>
+                    <th>文件下载</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.FilePath)
+                {
+                <tr>
+                    <td>
+                        @item.FileRealName
+                    </td>
+                    <td>
+                        @item.AddTime.ToString("yyyy-MM-dd")
+                    </td>
+                    <td>
+                        <img src="@item.FilePath" height="100" />
+                    </td>
+                    <td>
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <a href="@Url.Action("Pic","Broke", new {id = item.ID})" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> 查看/修改</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="@item.FilePath" target="_blank"><span class="glyphicon glyphicon-download"></span>右键点击另存为</a>
+                    </td>
+                </tr>
+                            }
+            </tbody>
+        </table>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">修改</button>
+            <a href="javascript:history.back()" class="btn btn-danger">取消</a>
+        </div>
+}
+
+@section scripts{
+    @Styles.Render("~/Scripts/datetimepicker/css/bootstrap-datetimepicker.min.css")
+    @Scripts.Render("~/Scripts/datetimepicker/js/bootstrap-datetimepicker.js")
+    @Scripts.Render("~/Scripts/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js")
+
+    <script>
+        $(function () {
+            $('.date').datetimepicker({
+                language: 'zh-CN',
+                autoclose: 1,
+                todayBtn: 1,
+                pickerPosition: "bottom-left",
+                minuteStep: 5,
+                format: 'yyyy-mm-dd',
+                minView: 'month'　　　　//日期时间选择器所能够提供的最精确的时间选择视图。
+            });
+        });
+
+        function callback(data) {
+            alert(data.Msg);
+            if (data.Code == 0) {
+                window.location = '@Url.Action("Index")';
+            }
+        }
+    </script>
+
+}
+
+
+
+

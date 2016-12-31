@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/live.css">
+</head>
+<body>
+<header>
+    <img src="images/header_title.png" alt="" class="imgBlock">
+    <nav>
+        <a href="index.html">首页</a>
+        <a href="programs.html">点播</a>
+        <a href="live.html" class="navActive">直播</a>
+        <a href="provide.html">报料</a>
+        <a href="action.html">活动</a>
+    </nav>
+</header>
+<div id="content">
+    <video id="video" controls poster="images/img-programs.png">
+        <source src="images/o1.mp4" type="video/mp4">
+    </video>
+    <div class="listWrap">
+        <h1><img src="images/live_icon.png" alt="">直播节目表</h1>
+        <ul>
+            <li class="isLiving"><span>07:06-08:00</span><span>零距离</span></li>
+            <li><span>07:06-08:00</span><span>零距离</span></li>
+            <li><span>07:06-08:00</span><span>零距离</span></li>
+            <li><span>07:06-08:00</span><span>零距离</span></li>
+            <li><span>07:06-08:00</span><span>零距离</span></li>
+        </ul>
+    </div>
+
+</div>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/rem.js"></script>
+</body>
+</html>

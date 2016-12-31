@@ -1,0 +1,55 @@
+﻿@model CityNews.Admin.Models.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>登陆</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body style="padding-top:150px;">
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-lg-12">
+                    @using (Ajax.BeginForm(new AjaxOptions { OnSuccess = "callback" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h2 class="text-primary" style="padding-bottom:30px;">城市微网站管理后台登录</h2>
+                        <div class="form-group">
+                            @Html.LabelFor(i => i.NickName)
+                            @Html.TextBoxFor(i => i.NickName, new { @class = "form-control" })
+                            <div class="text-danger">@Html.ValidationMessageFor(i => i.NickName)</div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(i => i.Password)
+                            @Html.PasswordFor(i => i.Password, new { @class = "form-control" })
+                            <div class="text-danger">@Html.ValidationMessageFor(i => i.Password)</div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">登陆</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    <script>
+        function callback(data){
+            if (data.Success) {
+                window.location = '@(Request.QueryString["returnUrl"] ?? (Request.UrlReferrer == null ? Url.Action("Index", "Home"): Request.UrlReferrer.AbsoluteUri))';
+            }
+            else{
+                alert(data.Message);
+            }
+        }
+    </script>
+</body>
+
+</html>
+

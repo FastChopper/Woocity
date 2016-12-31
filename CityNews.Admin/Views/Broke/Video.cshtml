@@ -1,0 +1,55 @@
+﻿@model CityNews.Admin.Models.FileViewModel
+@{
+    ViewBag.Title = "视频管理 - 修改";
+}
+<h2 class="text-primary">视频管理 - 修改</h2>
+@using (Ajax.BeginForm(new AjaxOptions { OnSuccess = "callback" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <video src="@Model.FilePath" controls="controls" width="700">您的浏览器不支持 video 标签。</video>
+        <p class="form-control-static">
+            <a href="@Model.FilePath">右键点击另存为可下载视频</a>
+        </p>
+    </div>
+    <div class="form-group">
+        <label for="ThumbSource">视频：</label>
+        <input type="file" style="display:none;" id="headpic" />
+        <div class="input-group">
+            @Html.TextBoxFor(i => i.FilePath, new { @class = "form-control", @readonly = "readonly", onclick = "headpic.click()", style = "cursor:pointer;" })
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" onclick="headpic.click()">浏览</button>
+            </span>
+        </div>
+        <div id="headpicthumbdisplay" class="text-muted">
+             
+        </div>
+        <div class="progress" style="display:none;" id="hpprogress">
+            <div class="progress-bar progress-bar-success" style="width:0%"></div>
+        </div>
+
+        <div class="text-danger">@Html.ValidationMessageFor(i => i.FilePath)</div>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">修改</button>
+        <a href="javascript:history.back()" class="btn btn-danger">取消</a>
+    </div>
+}
+
+@section scripts{
+    @Html.Action("UploaderJs", "Include", new { Direcetory = "GJLXPhoto" })
+
+    <script>
+        function callback(data) {
+            alert(data.Msg);
+            if (data.Code == 0) {
+                self.location = document.referrer;
+            }
+        }
+    </script>
+    <script>
+        setUploader('#headpic', '#FilePath', '#hpprogress', '#headpicthumbdisplay');
+    </script>
+}
+

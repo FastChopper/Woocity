@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>江苏城市频道微网站</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/provide.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <style>
+    </style>
+</head>
+<body>
+<header>
+    <img src="images/header_title.png" alt="" class="imgBlock">
+    <nav>
+        <a href="http://tv.jstv.com/city/wap_index.shtml">首页</a>
+        <a href="http://tv.jstv.com/city/m/wap_db.shtml">点播</a>
+        <a href="http://tv.jstv.com/city/n/wap_live.shtml">直播</a>
+        <a href="provide.html" class="navActive">报料</a>
+        <a href="action.html">活动</a>
+    </nav>
+</header>
+<div id="content">
+    <div id="tab-btns">
+        <a href="javascript:void(0)" id="provide" class="curTab">报料广场</a>
+        <a href="javascript:void(0)" id="myProvide">我的报料</a>
+    </div>
+    <div id="provide_content">
+<!--
+        <div class="provide_list">
+            <div class="list_first">
+                <h1>纯净水封装时加液氮江宁执法查</h1>
+                <div class="list_first_imgs">
+                    <li style="background: url('images/provide_img.png') no-repeat center center;/*background-size:6rem auto*/"></li>
+                    &lt;!&ndash;<img src="images/provide_img.png" alt="">&ndash;&gt;
+                    &lt;!&ndash;<img src="images/provide_img.png" alt="">&ndash;&gt;
+                    &lt;!&ndash;<img src="images/provide_img.png" alt="">&ndash;&gt;
+                </div>
+                <p>
+                    由东盟10个成员国和美国由东盟10个成员国和美国由东盟10个成员国和美国由东盟10个成员国和美国由东盟10个成员国和美国由东盟10个成员国和美国由东盟10个成员国和美国由东盟10个成员国和美国、印度等6家举行的联合军事演习</p>
+                <span>2015年03月18日</span>
+            </div>
+        </div>
+-->
+    </div>
+    <div id="myProvide_content" style="display:none;">
+        <div class="item_group check_item_group">
+            <input type="tel" name="tel" placeholder="请输入手机号"/>
+            <input type="text" name="ID" placeholder="请输入报料ID"/>
+            <button id="checkout">查询我的报料</button>
+        </div>
+    </div>
+    <div id="iwantprovide_content" style="display:none;">
+        <div class="item_group item_group_war">
+            <input type="text" name="tel" maxlength="24" placeholder="一句话描述您要报料的事件(24字以内)"/>
+            <input type="tel" name="tel" placeholder="输入您的手机号"/>
+            <textarea placeholder="输入报料内容"></textarea>
+            <div id="fuckyou">
+                <input type="file" name="file" id="post_file">
+                <p>选择图片文件</p>
+            </div>
+            <button id="submit">上传发布报料信息</button>
+        </div>
+    </div>
+    <div id="checkout_result" style="display:none;">
+        <h1><img src="images/search_icon.png" alt="">报料结果查询系统</h1>
+        <div class="checkout_result_wrap">
+            <div class="result_wrap_tab"><span>报料ID</span><span>处理进度</span></div>
+        </div>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!--<div class="swiper-slide"><img src="" alt=""></div>-->
+            <!--<div class="swiper-slide"><img src="" alt=""></div>-->
+            <!--<div class="swiper-slide"><img src="" alt=""></div>-->
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<div id="i_want_provide">
+    <img src="images/i_want_provide.png" alt="">
+</div>
+<div id="sucLayer" style="display:none;">
+    <h1>报料成功！</h1>
+    <span>您的报料ID是312312331</span>
+    <button id="copyInfo">好的</button>
+</div>
+<!--<div id="poi">-->
+<!--<div id="label">-->
+<!--<canvas id="get_image"></canvas>-->
+<!--<p>-->
+<!--<canvas id="cover_box"></canvas>-->
+<!--<canvas id="edit_pic"></canvas>-->
+<!--</p>-->
+<!--</div>-->
+<!--</div>-->
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/rem.js"></script>
+<script src="js/provider.js"></script>
+<script src="js/swiper.min.js"></script>
+
+<script>
+    $(function () {
+
+    })
+</script>
+</body>
+</html>

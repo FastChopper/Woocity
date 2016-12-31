@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>江苏城市频道微网站</title>
+
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/action.css">
+    <style>
+    </style>
+</head>
+<body>
+<header>
+    <img src="images/header_title.png" alt="" class="imgBlock">
+    <nav>
+        <a href="http://tv.jstv.com/city/wap_index.shtml">首页</a>
+        <a href="http://tv.jstv.com/city/m/wap_db.shtml">点播</a>
+        <a href="http://tv.jstv.com/city/n/wap_live.shtml">直播</a>
+        <a href="provide.html">报料</a>
+        <a href="action.html" class="navActive">活动</a>
+    </nav>
+</header>
+<div id="content">
+    <div id="tab-btns">
+        <a href="javascript:void(0)" id="provide" class="curTab">参加活动</a>
+        <a href="javascript:void(0)" id="myProvide">发起活动</a>
+    </div>
+    <div id="part_action">
+        <!--
+                <div class="per">
+                    <div class="per_wrap">
+                        <div class="per-fuck">
+                            <div class="per-fuck-o">
+                                <span>发起人:dkdkdk</span>
+                                <span>发起时间:2016-03-09</span>
+                            </div>
+                            <img src="" alt="">
+                        </div>
+                        <p>江苏广电总台春季招聘等你约江苏广电总台春季招聘等你约江苏广电总台春季招聘等你约</p>
+                    </div>
+                </div>
+        -->
+    </div>
+    <div id="detail_action" style="display:none;">
+        <div class="detail_wrap">
+            <img src alt="" class="banner">
+            <h1>江苏广电总台春季招聘等你约</h1>
+            <dl>
+                <dt><span>活动内容</span></dt>
+                <dd><p></p></dd>
+            </dl>
+            <dl>
+                <dt><span>活动安排</span></dt>
+                <dd><p></p></dd>
+            </dl>
+            <dl>
+                <dt><span>活动时间</span></dt>
+                <dd><p></p></dd>
+            </dl>
+            <dl>
+                <dt><span>参与人数</span></dt>
+                <dd><p></p></dd>
+            </dl>
+            <input type="tel" name="tel" placeholder="请输入您的手机号">
+            <input type="text" name="name" placeholder="请输入您的姓名">
+            <button id="signup">报名</button>
+        </div>
+
+    </div>
+    <div id="sponsor" style="display:none;">
+        <div class="item_group">
+            <input type="text" name="tel" placeholder="请输入活动名称"/>
+            <input type="text" name="tel" placeholder="请输入活动发起人"/>
+            <input type="tel" name="tel" placeholder="请输入活动发起人手机号码"/>
+            <textarea placeholder="请输入活动详情"></textarea>
+            <textarea placeholder="请输入活动安排"></textarea>
+            <div class="input-p">
+                <input type="text" name="time" placeholder="请输入开始时间"/>
+                <input type="text" name="time" placeholder="请输入结束时间"/>
+                <input type="text" name="time" placeholder="请输入报名截止时间"/>
+                <input type="date" name="time" class="check-time"/>
+                <input type="date" name="time" class="check-time"/>
+                <input type="date" name="time" class="check-time"/>
+            </div>
+            <div id="fuckyou">
+
+                <p id="picker"><input type="file" name="file" id="post_file"></p>
+            </div>
+            <button type="button" id="submit">发起活动</button>
+        </div>
+    </div>
+</div>
+<article class="htmleaf-container">
+    <div id="clipArea"></div>
+    <button id="clipBtn">截取</button>
+    <!--<input type="file" id="caifile">-->
+    <div id="view" style="visibility: hidden;"></div>
+</article>
+<div id="submitLayer" class="hintLayer" style="display:none;">
+    <h1>报名成功</h1>
+    <p>请按时参加活动！</p>
+</div>
+<div class="hintLayer hintLayer-lose" style="display:none;">
+    <h1>报名失败</h1>
+    <p>报名时间已结束</p>
+</div>
+<div id="sponsorLayer" class="hintLayer" style="display:none;">
+    <h1>发起活动成功</h1>
+    <p>请等待审核！</p>
+</div>
+<div id="upload_imgs"
+     style="position:absolute;left:0;top:0;z-index:-1;opacity:0;width:100%;height:100%;overflow:hidden;">
+</div>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/iscroll-zoom.js"></script>
+<script src="js/hammer.js"></script>
+<script src="js/jquery.photoClip.js"></script>
+<script src="js/rem.js"></script>
+<script src="js/action.js"></script>
+
+
+</body>
+</html>

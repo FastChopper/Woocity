@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CityNewsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CityNews_ActitiesList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IPInt" Type="int" Nullable="false" />
+          <Property Name="Leader" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contents" Type="text" Nullable="false" />
+          <Property Name="Arrange" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SignEndTime" Type="datetime" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="OrderIndex" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CityNews_ActitySign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fk_Id" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+          <Property Name="Ip" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IpInt" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CityNews_BrokeNews">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IPInt" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Contents" Type="text" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="Creatime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Explain" Type="text" Nullable="false" />
+          <Property Name="ExplainTime" Type="datetime" Nullable="false" />
+          <Property Name="IficationTime" Type="datetime" Nullable="false" />
+          <Property Name="OrderIndex" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CityNews_Dict">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderIndex" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CityNews_File">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fk_ID" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FileRealName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="MinPath" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Function Name="ChangeCityNews_ActitiesIndex" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CurrentID" Type="int" Mode="In" />
+          <Parameter Name="DesID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ChangeCityNews_BrokeIndex" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CurrentID" Type="int" Mode="In" />
+          <Parameter Name="DesID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="CityNewsModelStoreContainer">
+          <EntitySet Name="CityNews_ActitiesList" EntityType="Self.CityNews_ActitiesList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityNews_ActitySign" EntityType="Self.CityNews_ActitySign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityNews_BrokeNews" EntityType="Self.CityNews_BrokeNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityNews_Dict" EntityType="Self.CityNews_Dict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityNews_File" EntityType="Self.CityNews_File" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CityNewsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CityNewsEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="ChangeCityNews_ActitiesIndex">
+            <Parameter Name="CurrentID" Mode="In" Type="Int32" />
+            <Parameter Name="DesID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ChangeCityNews_BrokeIndex">
+            <Parameter Name="CurrentID" Mode="In" Type="Int32" />
+            <Parameter Name="DesID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="CityNews_ActitySign" EntityType="CityNewsModel.CityNews_ActitySign" />
+          <EntitySet Name="CityNews_BrokeNews" EntityType="CityNewsModel.CityNews_BrokeNews" />
+          <EntitySet Name="CityNews_Dict" EntityType="CityNewsModel.CityNews_Dict" />
+          <EntitySet Name="CityNews_File" EntityType="CityNewsModel.CityNews_File" />
+          <EntitySet Name="CityNews_ActitiesList" EntityType="CityNewsModel.CityNews_ActitiesList" />
+        </EntityContainer>
+        <EntityType Name="CityNews_ActitySign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fk_Id" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ip" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IpInt" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CityNews_BrokeNews">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IPInt" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="Creatime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Explain" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExplainTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IficationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderIndex" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CityNews_Dict">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderIndex" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CityNews_File">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fk_ID" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FileRealName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MinPath" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CityNews_ActitiesList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IPInt" Type="Int32" Nullable="false" />
+          <Property Name="Leader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Arrange" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SignEndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderIndex" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CityNewsModelStoreContainer" CdmEntityContainer="CityNewsEntities">
+          <FunctionImportMapping FunctionImportName="ChangeCityNews_ActitiesIndex" FunctionName="CityNewsModel.Store.ChangeCityNews_ActitiesIndex" />
+          <FunctionImportMapping FunctionImportName="ChangeCityNews_BrokeIndex" FunctionName="CityNewsModel.Store.ChangeCityNews_BrokeIndex" />
+          <EntitySetMapping Name="CityNews_ActitySign">
+            <EntityTypeMapping TypeName="CityNewsModel.CityNews_ActitySign">
+              <MappingFragment StoreEntitySet="CityNews_ActitySign">
+                <ScalarProperty Name="IpInt" ColumnName="IpInt" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fk_Id" ColumnName="Fk_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityNews_BrokeNews">
+            <EntityTypeMapping TypeName="CityNewsModel.CityNews_BrokeNews">
+              <MappingFragment StoreEntitySet="CityNews_BrokeNews">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="OrderIndex" ColumnName="OrderIndex" />
+                <ScalarProperty Name="IficationTime" ColumnName="IficationTime" />
+                <ScalarProperty Name="ExplainTime" ColumnName="ExplainTime" />
+                <ScalarProperty Name="Explain" ColumnName="Explain" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Creatime" ColumnName="Creatime" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IPInt" ColumnName="IPInt" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityNews_Dict">
+            <EntityTypeMapping TypeName="CityNewsModel.CityNews_Dict">
+              <MappingFragment StoreEntitySet="CityNews_Dict">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="OrderIndex" ColumnName="OrderIndex" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityNews_File">
+            <EntityTypeMapping TypeName="CityNewsModel.CityNews_File">
+              <MappingFragment StoreEntitySet="CityNews_File">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="MinPath" ColumnName="MinPath" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileRealName" ColumnName="FileRealName" />
+                <ScalarProperty Name="Fk_ID" ColumnName="Fk_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityNews_ActitiesList">
+            <EntityTypeMapping TypeName="CityNewsModel.CityNews_ActitiesList">
+              <MappingFragment StoreEntitySet="CityNews_ActitiesList">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="OrderIndex" ColumnName="OrderIndex" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="SignEndTime" ColumnName="SignEndTime" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="Arrange" ColumnName="Arrange" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Leader" ColumnName="Leader" />
+                <ScalarProperty Name="IPInt" ColumnName="IPInt" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
